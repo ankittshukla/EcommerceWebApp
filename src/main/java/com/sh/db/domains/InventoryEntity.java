@@ -12,4 +12,5 @@ public class InventoryEntity implements Serializable{
 	private String productId;
 	private String productName;
 	private int quantity;
+	private int maxQuantity;
 }

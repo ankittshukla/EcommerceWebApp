@@ -23,19 +23,20 @@ public class ShopHereController {
 	@RequestMapping(value="/createOrder",method = {RequestMethod.POST})
 	public ResponseFormat createOrder(
 			@RequestParam(value = "userId", required = true) Integer userId,
-			@RequestParam(value = "productIds", required = false) String productIds,
-			@RequestParam(value = "productCounts", required = false) String productCounts) {
+			@RequestParam(value = "productIds", required = true) String productIds,
+			@RequestParam(value = "productCounts", required = true) String productCounts) {
 		
 		String[] productIdList = productIds.split(",");
 		String[] productCountList = productCounts.split(",");
 		List<String> orderCreatedErrors = orderCreator.createOrder(userId,productIdList,productCountList);
 		ResponseFormat response = new ResponseFormat();
+		//generating response
 		if(orderCreatedErrors.isEmpty()) {
 			response.setStatusCode(200);
-			response.getResponseMessage("order place");
+			response.getResponseMessage("order placed");
 		}
 		else {
-			response.setStatusCode(200);
+			response.setStatusCode(400);
 			response.getResponseMessage(String.join("\n",orderCreatedErrors));
 		}
 		return response;

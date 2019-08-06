@@ -35,22 +35,38 @@ public class shopHereApplication implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
+		//setting default dummy db values
 		AccountsEntity accountsEntity = new AccountsEntity();
 		accountsEntity.setUserEmail("safsa@sfn.kjn");
-		accountsEntity.setUserId(1);
+		accountsEntity.setUserId(101);
 		accountsEntity.setUserName("awdfaw");
 		accountsRepository.save(accountsEntity);
+		
+		AccountsEntity accountsEntity2 = new AccountsEntity();
+		accountsEntity2.setUserEmail("sfsee@swewfn.keejn");
+		accountsEntity2.setUserId(101);
+		accountsEntity2.setUserName("aweeee");
+		accountsRepository.save(accountsEntity2);
 		
 		InventoryEntity inventoryEntity = new InventoryEntity();
 		inventoryEntity.setProductId("jj16");
 		inventoryEntity.setProductName("battery");
 		inventoryEntity.setQuantity(20);
+		inventoryEntity.setMaxQuantity(6);
 		inventoryRepository.save(inventoryEntity);
+		
+		InventoryEntity inventoryEntity2 = new InventoryEntity();
+		inventoryEntity2.setProductId("jj17");
+		inventoryEntity2.setProductName("guitar");
+		inventoryEntity2.setQuantity(13);
+		inventoryEntity2.setMaxQuantity(3);
+		inventoryRepository.save(inventoryEntity2);
 		
 		OrdersEntity ordersEntity = new OrdersEntity();
 		ordersEntity.setOrderId("1_8989898");
 		ordersEntity.setProductId("jj16");
 		ordersEntity.setUserId(1);
+		ordersEntity.setQuantity(3);
 		ordersRepository.save(ordersEntity);
 	}
 }
